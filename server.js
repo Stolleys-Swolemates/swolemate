@@ -109,7 +109,6 @@ app.route('/users/:userId/workouts')
 		res.end();
 	})
   
-<<<<<<< HEAD
 app.route('/users/:userId/caloricCount/')
   .put(function (req, res) {
     res.header("Content-Type", "application/json");
@@ -117,12 +116,10 @@ app.route('/users/:userId/caloricCount/')
     
     var cals = req.body.actual;
     var id = req.params.userId - 1;
-    console.log(users[id].caloricCount);
-    users[id].caloricCount.actual.push({ cals });
-
-    var goalCals = req.body.weight * req.body.height; 
-    users[id].caloricCount.goal.push({ goalCals });
+    var goalCals = users[id].weight * users[id].height; 
     
+    users[id].caloricCount.actual = { cals };
+    users[id].caloricCount.goal = { goalCals };
     res.end();
   })
 
@@ -150,7 +147,7 @@ app.route('/users/:userId/stats/')
     Users.user[id].maxes.push({ max });
     res.end();
   })
-=======
+  
 app.route('/users/:userId/workouts/:workoutId')
 	.get(function(req, res){
 		if(users[req.params.userId].workouts[req.params.workoutId] == 'undefined' ||
@@ -192,8 +189,6 @@ app.route('/users/:userId/workouts/:workoutId/:exerciseName')
 	.delete(function(req, res){
 
 	})
-
->>>>>>> d533bc54425981166220aa99d5a441667dd527b9
 
 //-----------------------------------------------------------------------
 var server = app.listen(8080, function () {
