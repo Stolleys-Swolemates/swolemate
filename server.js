@@ -18,20 +18,20 @@ app.route('/users')
 	.post(function (req, res) {
   		var newUser = {
     		"name" : "",
-    		"weight" : null,
-    		"height" : null,
+    		"weight" : 0,
+    		"height" : 0,
     		"sex" : null,
     		"stats" : {
-          "bench" : null,
-          "overheadpress" : null,
-          "deadlift" : null,
-          "squats" : null
+          "bench" : 0,
+          "overheadpress" : 0,
+          "deadlift" : 0,
+          "squats" : 0
         },
     		"workouts" : {},
     		"weights" : {},
     		"caloricCount" : {
-          "actual" : null,
-          "goal" : null
+          "actual" : 0,
+          "goal" : 0
         }
    		};
 
@@ -72,8 +72,14 @@ app.route('/users/:userId')
 		}
 	})
 	.delete(function (req, res){
-		delete users[req.params.userId];
-		res.end( "Deleted user with ID: " + JSON.stringify(req.params.userId));
+		if(users[req.params.userId] == 'undefined' ||
+			users[req.params.userId] == null){
+			res.status(404).send("ERROR 404: ID not found");
+		}
+		else{
+			delete users[req.params.userId];
+			res.end( "Deleted user with ID: " + req.params.userId);
+		}
 	})
 
 app.route('/users/:userId/workouts')
@@ -103,6 +109,7 @@ app.route('/users/:userId/workouts')
 		res.end();
 	})
   
+<<<<<<< HEAD
 app.route('/users/:userId/caloricCount/')
   .put(function (req, res) {
     res.header("Content-Type", "application/json");
@@ -143,6 +150,50 @@ app.route('/users/:userId/stats/')
     Users.user[id].maxes.push({ max });
     res.end();
   })
+=======
+app.route('/users/:userId/workouts/:workoutId')
+	.get(function(req, res){
+		if(users[req.params.userId].workouts[req.params.workoutId] == 'undefined' ||
+			users[req.params.userId].workouts[req.params.workoutId] == null){
+			res.status(404).send("ERROR 404: ID not found");
+		}
+		else
+			res.json(users[req.params.userId].workouts[req.params.workoutId]);
+	})
+	.delete(function(req, res){
+		if(users[req.params.userId].workouts[req.params.workoutId] == 'undefined' ||
+			users[req.params.userId].workouts[req.params.workoutId] == null){
+			res.status(404).send("ERROR 404: ID not found");
+		}
+		else
+			delete users[req.params.userId].workouts[req.params.workoutId];
+			res.end( "Deleted workout with ID: " + req.params.workoutId + 
+				" for user with ID: " + req.params.userId);
+	})
+
+app.route('/users/:userId/workouts/:workoutId/:exerciseName')
+	.post(function(req, res){
+		var workout = users[req.params.userId].workouts[req.params.workoutId];
+
+		console.log(req.params.exerciseName);
+		if(users[req.params.userId].workouts[req.params.workoutId] == 'undefined' ||
+			users[req.params.userId].workouts[req.params.workoutId] == null){
+			res.status(404).send("ERROR 404: ID not found");
+		}
+		else{
+			workout[req.params.exerciseName] = req.body;
+			res.json(users[req.params.userId].workouts[req.params.workoutId]);
+		}
+
+	})
+	.get(function(req, res){
+
+	})
+	.delete(function(req, res){
+
+	})
+
+>>>>>>> d533bc54425981166220aa99d5a441667dd527b9
 
 //-----------------------------------------------------------------------
 var server = app.listen(8080, function () {
@@ -150,6 +201,6 @@ var server = app.listen(8080, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log("REMINDER APP listening at http://%s:%s", host, port);
+  console.log("SWOLEMATE listening at http://%s:%s", host, port);
 
 });
