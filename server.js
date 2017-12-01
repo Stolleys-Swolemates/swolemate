@@ -103,6 +103,46 @@ app.route('/users/:userId/workouts')
 		res.end();
 	})
   
+app.route('/users/:userId/caloricCount/')
+  .put(function (req, res) {
+    res.header("Content-Type", "application/json");
+    res.status(200);
+    
+    var cals = req.body.actual;
+    var id = req.params.userId - 1;
+    console.log(users[id].caloricCount);
+    users[id].caloricCount.actual.push({ cals });
+
+    var goalCals = req.body.weight * req.body.height; 
+    users[id].caloricCount.goal.push({ goalCals });
+    
+    res.end();
+  })
+
+app.route('/users/:userId/weights/')
+  .post(function (req, res) {
+    res.header("Content-Type", "application/json");
+    res.status(200);
+    
+    var date = req.body.weights.date;
+    var weight = req.body.weights.weight;
+    var id = req.params.userId;
+    
+    Users.user[id].weights.push({ date , weight});
+    res.end();
+  })
+
+app.route('/users/:userId/stats/')
+  .put(function (req, res) {
+    res.header("Content-Type", "application/json");
+    res.status(200);
+    
+    var max = req.body.user.maxes;
+    var id = req.params.id;
+    
+    Users.user[id].maxes.push({ max });
+    res.end();
+  })
 
 //-----------------------------------------------------------------------
 var server = app.listen(8080, function () {
