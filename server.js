@@ -28,7 +28,7 @@ app.route('/users')
           "squats" : 0
         },
     		"workouts" : {},
-    		"weights" : {},
+    		"weights" : [],
     		"caloricCount" : {
           "actual" : 0,
           "goal" : 0
@@ -117,10 +117,12 @@ app.route('/users/:userId/caloricCount/')
     var cals = req.body.actual;
     var id = req.params.userId - 1;
     var goalCals = users[id].weight * users[id].height; 
+    var actualCals = cals + users[id].caloricCount.actual;
     
-    users[id].caloricCount.actual = { cals };
-    users[id].caloricCount.goal = { goalCals };
+    users[id].caloricCount.actual = actualCals;
+    users[id].caloricCount.goal = goalCals;
     res.end();
+    console.log(users[id]);
   })
 
 app.route('/users/:userId/weights/')
@@ -131,10 +133,10 @@ app.route('/users/:userId/weights/')
     var date = req.body.date;
     var weight = req.body.weight;
     var id = req.params.userId - 1;
-    
-    users[id].weights.date = date;
-    users[id].weights.weight = weight;
+    console.log(users[id].weights);
+    users[id].weights.push({date, weight});
     res.end();
+    console.log(users[id]);
   })
 
 app.route('/users/:userId/stats/')
@@ -142,11 +144,19 @@ app.route('/users/:userId/stats/')
     res.header("Content-Type", "application/json");
     res.status(200);
     
-    var max = req.body.user.maxes;
-    var id = req.params.id;
+    var bench = req.body.bench;
+    var overheadpress = req.body.overheadpress;
+    var deadlift = req.body.deadlift;
+    var squats = req.body.squats;
+    var id = req.params.userId - 1;
     
-    Users.user[id].stats.push({ max });
+    users[id].stats.bench = bench;
+    users[id].stats.overheadpress = overheadpress;
+    users[id].stats.deadlift = deadlift;
+    users[id].stats.squats = squats;
     res.end();
+    
+    console.log(users[id]);
   })
   
 app.route('/users/:userId/workouts/:workoutId')
