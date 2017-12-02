@@ -128,11 +128,12 @@ app.route('/users/:userId/weights/')
     res.header("Content-Type", "application/json");
     res.status(200);
     
-    var date = req.body.weights.date;
-    var weight = req.body.weights.weight;
-    var id = req.params.userId;
+    var date = req.body.date;
+    var weight = req.body.weight;
+    var id = req.params.userId - 1;
     
-    Users.user[id].weights.push({ date , weight});
+    users[id].weights.date = date;
+    users[id].weights.weight = weight;
     res.end();
   })
 
@@ -144,7 +145,7 @@ app.route('/users/:userId/stats/')
     var max = req.body.user.maxes;
     var id = req.params.id;
     
-    Users.user[id].maxes.push({ max });
+    Users.user[id].stats.push({ max });
     res.end();
   })
   
