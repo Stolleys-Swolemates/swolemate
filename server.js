@@ -114,6 +114,10 @@ app.route('/users/:userId/caloricCount/')
     res.header("Content-Type", "application/json");
     res.status(200);
     
+    //if statements to calc for male or female
+    //Males equation: 66.4730 + (13.7516 x weight in kg) + (5.0033 x height in cm)
+    //Females equation: 655.0955 + (9.5634 x weight in kg) + (1.8496 x height in cm)
+    
     var cals = req.body.actual;
     var id = req.params.userId - 1;
     var goalCals = users[id].weight * users[id].height; 
