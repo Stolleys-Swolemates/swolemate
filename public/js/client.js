@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
     
     // Make Workouts
-    $("#makeWorkouts").on('click', function () {
+    $("#create-workout-btn").on('click', function () {
       var workout = {};
       
       workout.workoutName = $("#exercise-1").val();
@@ -48,7 +48,7 @@ $(document).ready(function () {
     });
     
     // Enter Calories & Calories Counter
-    $("#calories").on('click', function () {
+    $("#calculate-calories-btn"").on('click', function () {
         var calories = {};
 
         calories.actual= $("#input-actual").val();
@@ -67,7 +67,7 @@ $(document).ready(function () {
     });
     
     // Weight Tracker
-    $("#weight").on('click', function () {
+    $("#weight-btn").on('click', function () {
         var bodyWeight = {};
         
         bodyWeight.date = $("#input-date").val();
@@ -87,7 +87,7 @@ $(document).ready(function () {
     });
     
     // Stats for weights
-    $("#Weights").on('click', function () {
+    $("#update-stats-btn").on('click', function () {
         var stats = {};
         
         stats.bench = $("#bench-stat-input").val();
