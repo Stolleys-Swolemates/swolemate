@@ -40,12 +40,16 @@
 
                 <div>My stats:</div>
                 <div>OHP:
+                    <input id="input-ohp" type="text" placeholder="180">
                     <span id="stats-ohp"></span> lbs</div>
                 <div>Bench:
+                    <input id="input-bench" type="text" placeholder="180">
                     <span id="stats-bench"></span> lbs</div>
                 <div>Squats:
+                    <input id="input-squats" type="text" placeholder="180">
                     <span id="stats-squats"></span> lbs</div>
                 <div>Deadlift:
+                    <input id="input-deadlift" type="text" placeholder="180">
                     <span id="stats-deadlift"></span> lbs</div>
                 <button type="button" id="update-stats-btn" class="btn btn-primary">Update Stats</button>
             </div>
@@ -73,7 +77,7 @@
                         <span class="input-group-addon">Exercise 3</span>
                         <input id="input-weight" type="text" id="exercise-3" class="form-control" placeholder="Curls">
                         <input id="input-weight" type="text" id="exercise-3-s" class="form-control" placeholder="Sets">
-                        <input id="input-weight" type="text" id="exercise-1-r" class="form-control" placeholder="Reps">
+                        <input id="input-weight" type="text" id="exercise-3-r" class="form-control" placeholder="Reps">
                     </div>
                     <button type="button" id="create-workout-btn" class="btn btn-primary">Create New Workout</button>
                 
@@ -86,21 +90,20 @@
                     <h2>Nutrition</h2>
                     <h3>Calorie Calculator</h3>
                     <div class="input-group">
-                        <span class="input-group-addon">Weight (lbs)</span>
-                        <input id="input-weight" type="text" class="form-control" placeholder="180">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Height (lbs)</span>
-                        <input id="input-weight" type="text" class="form-control" placeholder="180">
+                        <span class="input-group-addon">How much I've eaten (calories)</span>
+                        <input id="input-actual" type="text" class="form-control" placeholder="180">
                     </div>
                     <button type="button" id="calculate-calories-btn" class="btn btn-primary">Calculate Calories</button>
+                    <div id="howmuch">I've eaten this many calories: </div>
                     <div>My goal calories for today are:</div>
                     <div id="calculated-calories"></div>
                     <hr/>
 
                     <h3>Weight Tracker</h3>
                     <div class="input-group">
-                        <span class="input-group-addon">My weight today (lbs)</span>
+                        <span class="input-group-addon">Date</span>
+                        <input id="input-date" type="text" class="form-control" placeholder="180">
+                        <span class="input-group-addon">Weight (lbs)</span>
                         <input id="input-weight" type="text" class="form-control" placeholder="180">
                     </div>
                     <button type="button" id="calculate-calories-btn" class="btn btn-primary">Track Weight</button>

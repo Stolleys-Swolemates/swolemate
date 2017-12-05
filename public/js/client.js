@@ -88,10 +88,10 @@ $(document).ready(function () {
     $("#Weights").on('click', function () {
         var stats = {};
         
-        stats.bench = $("#stats-bench").val();
+        stats.bench = $("#input-bench").val();
         stats.overheadpress = $("#input-ohp").val();
-        stats.deadlift = $("#stats-deadlift").val();
-        stats.squats = $("#stats-squats").val();
+        stats.deadlift = $("#input-deadlift").val();
+        stats.squats = $("#input-squats").val();
         
         $.ajax({
             type: 'PUT',
