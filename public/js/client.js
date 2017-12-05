@@ -59,6 +59,8 @@ $(document).ready(function () {
             data: calories,
             success: function (res) {
                 console.log('success');
+                document.getElementById("howmuch").innerHTML = res.actual;
+                document.getElementById("goals").innerHTML = Math.round(res.goal);
             },
             error: function(res) {
                 console.log('failure');
@@ -79,6 +81,8 @@ $(document).ready(function () {
             data: bodyWeight,
             success: function (res) {
                 console.log('success');
+                var $log = $("<p>").text("Date: " + res.date + "  Weight: " + res.weight);
+                $("#todays-weight").append($log);
             },
             error: function(res) {
                 console.log('failure');
