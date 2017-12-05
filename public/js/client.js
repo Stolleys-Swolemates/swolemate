@@ -30,7 +30,9 @@ $(document).ready(function () {
     $("#makeWorkouts").on('click', function () {
       var workout = {};
       
-      workout.newWorkout = $("#input-newWorkout").val();
+      workout.workoutName = $("#exercise-1").val();
+      workout.workoutSets = $("#exercise-1-s").val();
+      workout.workoutReps = $("#exercise-1-r").val();
       
       $.ajax({
           type: 'POST',
@@ -88,10 +90,10 @@ $(document).ready(function () {
     $("#Weights").on('click', function () {
         var stats = {};
         
-        stats.bench = $("#input-bench").val();
-        stats.overheadpress = $("#input-ohp").val();
-        stats.deadlift = $("#input-deadlift").val();
-        stats.squats = $("#input-squats").val();
+        stats.bench = $("#bench-stat-input").val();
+        stats.overheadpress = $("#ohp-stat-input").val();
+        stats.deadlift = $("#deadlift-stat-input").val();
+        stats.squats = $("#squat-stat-input").val();
         
         $.ajax({
             type: 'PUT',
