@@ -101,7 +101,10 @@ $(document).ready(function () {
             data: stats,
             success: function (res) {
                 console.log('success');
-                console.log(res);
+                document.getElementById("stats-bench").innerHTML = res.bench;
+                document.getElementById("stats-ohp").innerHTML = res.overheadpress;
+                document.getElementById("stats-deadlift").innerHTML = res.deadlift;
+                document.getElementById("stats-squats").innerHTML = res.squats;
             },
             error: function(res) {
                 console.log('failure');
