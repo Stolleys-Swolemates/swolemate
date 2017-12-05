@@ -2,7 +2,6 @@ $(document).ready(function () {
     // Sign up button
     $("#getSwole").on('click', function () {
         var user = {};
-
         user.name = $("#input-name").val();
         user.weight = $("#input-weight").val();
         user.height = $("#input-height").val();
@@ -11,7 +10,6 @@ $(document).ready(function () {
         } else {
             user.sex = "female";
         }
-        console.log(user);
 
         $.ajax({
             type: 'POST',
@@ -19,7 +17,6 @@ $(document).ready(function () {
             data: user,
             success: function (res) {
                 console.log('success');
-                
                 window.location.assign('/app');
                 app(res);
             },
@@ -28,8 +25,6 @@ $(document).ready(function () {
             }
         });
     });
-
-   
     
     // Make Workouts
     $("#makeWorkouts").on('click', function () {
@@ -55,7 +50,6 @@ $(document).ready(function () {
         var calories = {};
 
         calories.actual= $("#input-actual").val();
-        calories.goal = $("#input-goal").val();
 
         $.ajax({
             type: 'PUT',
@@ -91,13 +85,13 @@ $(document).ready(function () {
     });
     
     // Stats for weights
-    $("#getSwole").on('click', function () {
+    $("#Weights").on('click', function () {
         var stats = {};
         
-        stats.bench = $("#input-bench").val();
-        stats.overheadpress = $("#input-overheadpress").val();
-        stats.deadlift = $("#input-deadlift").val();
-        stats.squats = $("#input-squats").val();
+        stats.bench = $("#stats-bench").val();
+        stats.overheadpress = $("#input-ohp").val();
+        stats.deadlift = $("#stats-deadlift").val();
+        stats.squats = $("#stats-squats").val();
         
         $.ajax({
             type: 'PUT',
